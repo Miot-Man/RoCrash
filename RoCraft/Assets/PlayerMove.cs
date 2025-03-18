@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -18,7 +19,7 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         //Movement
-        rb.MovePosition(rb.position + Movement * movespeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + Movement.normalized * movespeed * Time.fixedDeltaTime);
 
     }
 }
