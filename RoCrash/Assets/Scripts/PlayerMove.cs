@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     public float movespeed = 5f;
     public Rigidbody2D rb;
     private Vector2 pos;
+
     Vector2 Movement;
     private void Update()
     {
@@ -27,6 +29,7 @@ public class PlayerMove : MonoBehaviour
         rb.MovePosition(pos);
         //update global player velocity
         GameManager.playervelo = Movement.normalized * movespeed;
+        
 
     }
 }
