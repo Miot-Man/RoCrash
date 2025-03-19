@@ -137,9 +137,10 @@ GameObject:
   - component: {fileID: 268434380}
   - component: {fileID: 268434379}
   - component: {fileID: 268434384}
-  m_Layer: 0
+  - component: {fileID: 268434385}
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -315,6 +316,19 @@ MonoBehaviour:
   projectile: {fileID: 7786146288608793791, guid: 0be71fab8f06b9544be72a64b9e729af, type: 3}
   damage: 1
   projectilespeed: 10
+--- !u!114 &268434385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268434378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0b50f1641aa3f245b7ecbde826d8aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +452,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 1
   op: {fileID: 668982288617056043, guid: 8d53237f62dfe8c44bb2b1c0987079a4, type: 3}
-  spawnrange: 15
+  spawnrange: 10
+  x: 5
 --- !u!4 &1621623399
 Transform:
   m_ObjectHideFlags: 0
