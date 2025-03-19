@@ -8,9 +8,10 @@ public class EnemySpawn : MonoBehaviour
     private float timer = 0f;
     public GameObject op;
     public float spawnrange = 5f;
+    public float x = 5f;
     void Start()
     {
-        
+        GameManager.numenemies = 0;
     }
 
     // Update is called once per frame
@@ -20,7 +21,14 @@ public class EnemySpawn : MonoBehaviour
         if (timer >= time)
         {
             timer = 0f;
-            Instantiate(op, new Vector3(Random.Range(-spawnrange,spawnrange) + GameManager.playerpos.x, Random.Range(-spawnrange, spawnrange) + GameManager.playerpos.y, 0), Quaternion.identity);
+            if (GameManager.numenemies <= 9){
+                GameManager.numenemies++;
+                Vector3 temp = new Vector3(Random.Range(-spawnrange,spawnrange) + GameManager.playerpos.x, Random.Range(-spawnrange, spawnrange) + GameManager.playerpos.y, 0);
+                while (-x <= temp.x && temp.x <= x || -x <= temp.y && temp.y <= x){
+                    temp = new Vector3(Random.Range(-spawnrange,spawnrange) + GameManager.playerpos.x, Random.Range(-spawnrange, spawnrange) + GameManager.playerpos.y, 0);
+                }
+                Instantiate(op, temp, Quaternion.identity);
+            }
         }
     }
 }

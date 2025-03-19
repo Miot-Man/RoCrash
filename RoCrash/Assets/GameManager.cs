@@ -8,5 +8,8 @@ public static class GameManager
     public static Vector2 playerpos;
     public static Vector2 playervelo;
     public static float weapondamage;
+    public static int numenemies;
+
+    public static GameObject player;
 
 }

@@ -438,7 +438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 1
   op: {fileID: 668982288617056043, guid: 8d53237f62dfe8c44bb2b1c0987079a4, type: 3}
-  spawnrange: 5
+  spawnrange: 15
 --- !u!4 &1621623399
 Transform:
   m_ObjectHideFlags: 0

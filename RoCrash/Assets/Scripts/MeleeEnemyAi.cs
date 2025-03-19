@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,15 +7,52 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
 {
     public float health = 3f;
     public float movespeed = 3f;
+    public float damage = 1f;
+    public LayerMask whatDamagesPlayer;
+
+    Rigidbody2D rb;
+    Transform target;
+    Vector2 movedir;
+
+    bool canattack = true;
+    float timer = 0f;
+
+    void Awake(){
+        rb = GetComponent<Rigidbody2D>();
+    }
     void Start()
     {
-        
+        target = GameManager.player.transform;
     }
-
+    void OnTriggerStay2D(Collider2D col)
+        {
+            if (((whatDamagesPlayer.value & (1 << col.gameObject.layer)) > 0) && canattack)
+            {
+                canattack = false;
+                timer = 0f;
+                col.GetComponent<IDamageable>().damage(this.damage);
+            }
+        }
     // Update is called once per frame
     void Update()
     {
-  
+        timer += Time.deltaTime;
+        if (!canattack && (timer >= 2f)){
+            canattack = true;
+        }
+        if (target){
+            Vector2 dir = (target.position - transform.position).normalized;
+            movedir = dir;
+        }
+
+
+    }
+
+    void FixedUpdate()
+    {
+        if (target){
+            rb.velocity = new Vector2(movedir.x, movedir.y) * movespeed;
+        }
     }
     void IDamageable.damage(float damage)
     {
@@ -22,6 +60,7 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
         Debug.Log("Took Damage");
         if (health <= 0)
         {
+            GameManager.numenemies--;
             Destroy(gameObject);
         }
     }

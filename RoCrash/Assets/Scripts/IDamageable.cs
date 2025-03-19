@@ -6,5 +6,4 @@ public interface IDamageable
 {
 public void damage(float damage);
 
-
 }
