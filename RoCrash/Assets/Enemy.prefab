@@ -178,7 +178,6 @@ MonoBehaviour:
   whatDamagesPlayer:
     serializedVersion: 2
     m_Bits: 128
-  player: {fileID: 0}
 --- !u!61 &2748434436224098620
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -186,7 +185,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668982288617056043}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
