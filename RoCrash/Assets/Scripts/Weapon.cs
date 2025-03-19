@@ -27,7 +27,7 @@ public class Weapon : MonoBehaviour
             firetimer = 0f;
             //create bullet object and setup with attributes
             GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity);
-            bullet.GetComponent<Bullet>().setup(projectilespeed,damage);
+            bullet.GetComponent<Bullet>().setup(projectilespeed, damage);
             
             
         }
