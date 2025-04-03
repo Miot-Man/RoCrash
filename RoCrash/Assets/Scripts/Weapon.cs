@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -36,5 +37,11 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         fire();
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            UpgradeManager.damageupgrade++;
+            Debug.Log("Damage upgraded");
+            damage = (float)Math.Pow(1.5, UpgradeManager.damageupgrade);
+        }
     }
 }
