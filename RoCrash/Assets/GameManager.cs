@@ -11,5 +11,8 @@ public static class GameManager
     public static int numenemies;
 
     public static GameObject player;
-
+    
+    
+    public static float damagemult = 1f;
+  
 }

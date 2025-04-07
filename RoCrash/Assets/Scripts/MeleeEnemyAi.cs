@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class MeleeEnemyAi : MonoBehaviour, IDamageable
 {
@@ -9,7 +10,7 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
     public float movespeed = 3f;
     public float damage = 1f;
     public LayerMask whatDamagesPlayer;
-
+    public GameObject upgrade;
     Rigidbody2D rb;
     Transform target;
     Vector2 movedir;
@@ -60,6 +61,12 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
         Debug.Log("Took Damage");
         if (health <= 0)
         {
+            
+            if (Random.Range(0, 100) < 90)
+            {
+                Instantiate(upgrade, transform.position, Quaternion.identity);
+            }
+            
             GameManager.numenemies--;
             Destroy(gameObject);
         }

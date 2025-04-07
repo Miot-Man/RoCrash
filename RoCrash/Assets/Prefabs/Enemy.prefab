@@ -178,6 +178,7 @@ MonoBehaviour:
   whatDamagesPlayer:
     serializedVersion: 2
     m_Bits: 128
+  upgrade: {fileID: 7713615868193811003, guid: 376316e63dd15418baaf74c940a6e6e8, type: 3}
 --- !u!61 &2748434436224098620
 BoxCollider2D:
   m_ObjectHideFlags: 0
