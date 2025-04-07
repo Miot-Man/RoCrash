@@ -14,5 +14,6 @@ public static class GameManager
     
     
     public static float damagemult = 1f;
+    public static float healthmult = 1f;
   
 }

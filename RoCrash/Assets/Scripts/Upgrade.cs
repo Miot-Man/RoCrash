@@ -5,15 +5,8 @@ using UnityEngine;
 
 public class Upgrade : MonoBehaviour
 {
-    
     public string upgradeType;
-
-    void Start()
-    {
-
-
-    }
-
+    
     // Update is called once per frame
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -24,9 +17,14 @@ public class Upgrade : MonoBehaviour
                 case "Damage":
                     GameManager.damagemult *= 1.5f;
                     break;
+                case "Health":
+                    GameManager.healthmult += 2f;
+                    GameManager.player.GetComponent<PlayerManager>().IncreaseHealth();
+                    break;
             }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        
     }
 
 

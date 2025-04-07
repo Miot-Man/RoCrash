@@ -5,18 +5,22 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour, IDamageable
 {
     public float health = 10f;
+    private float maxhealth = 10f;
+    private float basehealth;
     public healthbar healthbar;
     
     void Start()
     {
         GameManager.player = gameObject;
         healthbar.setmaxhealth(health);
+        basehealth = maxhealth;
     }
 
     // Update is called once per frame
-    void Update()
+    public void IncreaseHealth()
     {
-        
+        maxhealth = basehealth * GameManager.healthmult;
+        healthbar.setmaxhealth(maxhealth);
     }
     void IDamageable.damage(float damage)
     {

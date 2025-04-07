@@ -10,7 +10,7 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
     public float movespeed = 3f;
     public float damage = 1f;
     public LayerMask whatDamagesPlayer;
-    public GameObject upgrade;
+    public GameObject[] upgrades = new GameObject[5];
     Rigidbody2D rb;
     Transform target;
     Vector2 movedir;
@@ -64,7 +64,7 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
             
             if (Random.Range(0, 100) < 90)
             {
-                Instantiate(upgrade, transform.position, Quaternion.identity);
+                Instantiate(upgrades[Random.Range(0,upgrades.Length)], transform.position, Quaternion.identity);
             }
             
             GameManager.numenemies--;
