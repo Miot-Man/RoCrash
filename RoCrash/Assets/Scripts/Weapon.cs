@@ -28,7 +28,7 @@ public class Weapon : MonoBehaviour
             firetimer = 0f;
             //create bullet object and setup with attributes
             GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity);
-            bullet.GetComponent<Bullet>().setup(projectilespeed, damage);
+            bullet.GetComponent<Bullet>().setup(projectilespeed, (damage * GameManager.damagemult));
             
             
         }
@@ -37,11 +37,6 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         fire();
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            UpgradeManager.damageupgrade++;
-            Debug.Log("Damage upgraded");
-            damage = (float)Math.Pow(1.5, UpgradeManager.damageupgrade);
-        }
+        
     }
 }
