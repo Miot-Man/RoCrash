@@ -61,6 +61,8 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
     }
     void IDamageable.damage(float damage)
     {
+        
+
         health -= damage;
         UnityEngine.Debug.Log("Took Damage");
         if (health <= 0)

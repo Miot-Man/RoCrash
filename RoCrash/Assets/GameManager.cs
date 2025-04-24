@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public static class GameManager
 {
@@ -15,12 +16,19 @@ public static class GameManager
     public static GameObject spawner;
 
     public static GameObject boss;
+
+    public static TMPro.TextMeshProUGUI scorecard;
+    public static GameObject scorebg;
     
     
     public static void endGame()
     {
+        scorecard.text = "Game Over\nEnemies Killed: " + enemiesKilled + "\nBosses Killed: " + bossesKilled;
+        scorecard.enabled = true;
+        scorebg.SetActive(true);
         Time.timeScale = 0f;
         Application.Quit();
+        
     }
 
 
