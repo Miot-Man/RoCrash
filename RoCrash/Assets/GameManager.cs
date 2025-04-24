@@ -36,7 +36,7 @@ public static class GameManager
     public static float damagemult = 1f;
     public static float healthmult = 1f;
 
-    public static float timeLeft = 60f;
+    public static float timeLeft = 100000f;
     public static float timeElapsed = 0f;
     public static float timeIncrease = 30f;
 
@@ -44,6 +44,8 @@ public static class GameManager
     public static int enemiesSpawned = 0;
 
     public static int bossesKilled = 0;
+
+    public static bool bossSpawned = false;
 
   
 }

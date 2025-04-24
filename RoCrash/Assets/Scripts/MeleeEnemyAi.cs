@@ -61,7 +61,7 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
     }
     void IDamageable.damage(float damage)
     {
-        
+
 
         health -= damage;
         UnityEngine.Debug.Log("Took Damage");
@@ -76,18 +76,21 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
             
                 GameManager.numenemies--;
                 GameManager.enemiesKilled++;
+                UnityEngine.Debug.Log("Enemies Killed: " + GameManager.enemiesKilled);
 
                 if (GameManager.enemiesKilled == Math.Max(5, 5*GameManager.bossesKilled))
                 {
                     
                 }
-
                 Destroy(gameObject);
                 break;
                 case "Boss":
                     GameManager.timeLeft += GameManager.timeIncrease;
                     GameManager.timeIncrease *= 0.9f;
                     GameManager.bossesKilled++;
+                    Destroy(gameObject);
+                    GameManager.bossSpawned = false;
+                    GameManager.enemiesKilled = 0;
                     break;
             }
            

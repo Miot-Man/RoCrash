@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
@@ -6,7 +7,6 @@ using UnityEngine;
 
 public class GameManagerObject : MonoBehaviour
 {
-\
     public TextMeshProUGUI timerText;
 
     public TextMeshProUGUI scorecard;
@@ -26,7 +26,12 @@ public class GameManagerObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
+        if (GameManager.enemiesKilled >= Math.Max(5, 5*GameManager.bossesKilled) && !GameManager.bossSpawned)
+        {
+            GameManager.bossSpawned = true;
+            SpawnBoss();
+        }
 
 
         GameManager.timeLeft -= Time.deltaTime;
