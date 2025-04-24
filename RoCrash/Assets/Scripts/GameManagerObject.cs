@@ -27,7 +27,7 @@ public class GameManagerObject : MonoBehaviour
     void Update()
     {
         
-        if ((GameManager.enemiesKilled >= Math.Max(5, 5*GameManager.bossesKilled) && !GameManager.bossSpawned) || Input.GetKeyDown(KeyCode.B))
+        if ((GameManager.enemiesKilled >= (5 + 5*GameManager.bossesKilled) && !GameManager.bossSpawned) || Input.GetKeyDown(KeyCode.B))
         {
             GameManager.bossSpawned = true;
             SpawnBoss();
@@ -36,11 +36,17 @@ public class GameManagerObject : MonoBehaviour
 
         GameManager.timeLeft -= Time.deltaTime;
         GameManager.timeElapsed += Time.deltaTime;
-        timerText.text = "Time Left: " + Mathf.Round(GameManager.timeLeft).ToString();
+        timerText.text = "Time Left: " + Mathf.Round(GameManager.timeLeft).ToString() + "\nDifficulty: " + GameManager.difficulty.ToString();
         if (GameManager.timeLeft <= 0)
         {
             GameManager.endGame();
         }
+
+        if (GameManager.timeElapsed > (60 * GameManager.difficulty))
+        {
+            GameManager.difficulty++;
+        }
+
 
     
     

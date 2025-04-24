@@ -32,6 +32,8 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
 
     void Awake(){
         rb = GetComponent<Rigidbody2D>();
+        health = health * GameManager.difficulty;
+        damage = damage * GameManager.difficulty;
     }
     void Start()
     {
@@ -129,6 +131,7 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
                 case "Boss":
                     GameManager.timeLeft += GameManager.timeIncrease;
                     GameManager.timeIncrease *= 0.9f;
+                    if (GameManager.timeIncrease < 0){ GameManager.timeIncrease = 0; }
                     GameManager.bossesKilled++;
                     GameManager.bossSpawned = false;
                     GameManager.enemiesKilled = 0;
