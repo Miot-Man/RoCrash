@@ -23,7 +23,7 @@ public static class GameManager
     
     public static void endGame()
     {
-        scorecard.text = "Game Over\nEnemies Killed: " + enemiesKilled + "\nBosses Killed: " + bossesKilled;
+        scorecard.text = "Game Over\nEnemies Killed: " + score + "\nBosses Killed: " + bossesKilled;
         scorecard.enabled = true;
         scorebg.SetActive(true);
         Time.timeScale = 0f;
@@ -43,6 +43,7 @@ public static class GameManager
 
     public static int enemiesKilled = 0;
     public static int enemiesSpawned = 0;
+    public static int score = 0;
 
     public static int bossesKilled = 0;
 

@@ -27,7 +27,7 @@ public class GameManagerObject : MonoBehaviour
     void Update()
     {
         
-        if (GameManager.enemiesKilled >= Math.Max(5, 5*GameManager.bossesKilled) && !GameManager.bossSpawned)
+        if ((GameManager.enemiesKilled >= Math.Max(5, 5*GameManager.bossesKilled) && !GameManager.bossSpawned) || Input.GetKeyDown(KeyCode.B))
         {
             GameManager.bossSpawned = true;
             SpawnBoss();

@@ -99,13 +99,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f40b799d5b2db741af80aa16abd8f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  health: 15
   movespeed: 3
   damage: 5
   whatDamagesPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
+  enemybouncer:
+    serializedVersion: 2
+    m_Bits: 64
   upgrades: []
+  target: {fileID: 0}
+  bounce: 0
   enemyType: Boss
 --- !u!50 &6836644948695673389
 Rigidbody2D:
@@ -120,7 +125,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 7
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

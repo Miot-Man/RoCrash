@@ -13,13 +13,15 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
     public float damage = 1f;
     public LayerMask whatDamagesPlayer;
     public LayerMask enemybouncer;
+
+
     public GameObject[] upgrades = new GameObject[5];
     Rigidbody2D rb;
-    Transform target;
+    [SerializeField] Transform target;
     Vector2 movedir;
 
 
-    bool bounce = false;
+    [SerializeField] bool bounce = false;
     float bounceCd = 0f;
 
 
@@ -99,8 +101,9 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
                 if (rb.velocity.magnitude < movespeed)
                 {
                     rb.AddForce(movedir * movespeed, ForceMode2D.Impulse);
-                }        }
-        }
+                }       
+                 }
+    }
     }
     void IDamageable.damage(float damage)
     {
@@ -119,21 +122,18 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
             
                 GameManager.numenemies--;
                 GameManager.enemiesKilled++;
+                GameManager.score += 1;
                 UnityEngine.Debug.Log("Enemies Killed: " + GameManager.enemiesKilled);
-
-                if (GameManager.enemiesKilled == Math.Max(5, 5*GameManager.bossesKilled))
-                {
-                    
-                }
                 Destroy(gameObject);
                 break;
                 case "Boss":
                     GameManager.timeLeft += GameManager.timeIncrease;
                     GameManager.timeIncrease *= 0.9f;
                     GameManager.bossesKilled++;
-                    Destroy(gameObject);
                     GameManager.bossSpawned = false;
                     GameManager.enemiesKilled = 0;
+                    Destroy(gameObject);
+                    
                     break;
             }
            
