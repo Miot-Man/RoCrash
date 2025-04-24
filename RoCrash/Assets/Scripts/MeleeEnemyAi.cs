@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,6 +16,8 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
     Rigidbody2D rb;
     Transform target;
     Vector2 movedir;
+
+    public String enemyType;
 
     bool canattack = true;
     float timer = 0f;
@@ -58,17 +62,33 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
     void IDamageable.damage(float damage)
     {
         health -= damage;
-        Debug.Log("Took Damage");
+        UnityEngine.Debug.Log("Took Damage");
         if (health <= 0)
         {
+            switch (enemyType){
+                case "Enemy":
+                 if (Random.Range(0, 100) < 90)
+                    {
+                    Instantiate(upgrades[Random.Range(0,upgrades.Length)], transform.position, Quaternion.identity);
+                    }
             
-            if (Random.Range(0, 100) < 90)
-            {
-                Instantiate(upgrades[Random.Range(0,upgrades.Length)], transform.position, Quaternion.identity);
+                GameManager.numenemies--;
+                GameManager.enemiesKilled++;
+
+                if (GameManager.enemiesKilled == Math.Max(5, 5*GameManager.bossesKilled))
+                {
+                    
+                }
+
+                Destroy(gameObject);
+                break;
+                case "Boss":
+                    GameManager.timeLeft += GameManager.timeIncrease;
+                    GameManager.timeIncrease *= 0.9f;
+                    GameManager.bossesKilled++;
+                    break;
             }
-            
-            GameManager.numenemies--;
-            Destroy(gameObject);
+           
         }
     }
 }

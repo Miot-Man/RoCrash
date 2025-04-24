@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, IDamageable
@@ -22,6 +23,16 @@ public class PlayerManager : MonoBehaviour, IDamageable
         maxhealth = basehealth * GameManager.healthmult;
         healthbar.setmaxhealth(maxhealth);
     }
+
+    public void heal()
+    {
+        health += maxhealth * 0.2f;
+        if (health > maxhealth)
+        {
+            health = maxhealth;
+        }
+        healthbar.sethealth(health);
+    }
     void IDamageable.damage(float damage)
     {
         health -= damage;
@@ -29,8 +40,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         Debug.Log("Player Took Damage");
         if (health <= 0)
         {
-            GameManager.numenemies--;
-            Destroy(gameObject);
+            GameManager.endGame();
         }
     }
 }

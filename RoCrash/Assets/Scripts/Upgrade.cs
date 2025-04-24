@@ -21,11 +21,13 @@ public class Upgrade : MonoBehaviour
                     GameManager.healthmult += 2f;
                     GameManager.player.GetComponent<PlayerManager>().IncreaseHealth();
                     break;
+                case "Healthpack":
+                    GameManager.player.GetComponent<PlayerManager>().heal();
+                    break;
             }
             Destroy(gameObject);
         }
         
     }
-
 
 }
