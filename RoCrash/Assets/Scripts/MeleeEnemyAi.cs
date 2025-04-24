@@ -17,6 +17,9 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
     Transform target;
     Vector2 movedir;
 
+    bool bounce;
+    float bouncetimer = 0f;
+
     public String enemyType;
 
     bool canattack = true;
@@ -28,21 +31,25 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
     void Start()
     {
         target = GameManager.player.transform;
+        bounce = false;
     }
-    void OnTriggerStay2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
         {
             if (((whatDamagesPlayer.value & (1 << col.gameObject.layer)) > 0) && canattack)
             {
                 canattack = false;
                 timer = 0f;
                 col.GetComponent<IDamageable>().damage(this.damage);
+                bounce = true;
+                bouncetimer = 0f;
+                rb.AddForce(-movedir * 10, ForceMode2D.Impulse);
             }
         }
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
-        if (!canattack && (timer >= 2f)){
+        if (!canattack && (timer >= 0.5f)){
             canattack = true;
         }
         if (target){
@@ -56,7 +63,18 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
     void FixedUpdate()
     {
         if (target){
-            rb.velocity = new Vector2(movedir.x, movedir.y) * movespeed;
+            if (bounce)
+            {
+                bouncetimer += Time.deltaTime;
+                if (bouncetimer >= 0.5f)
+                {
+                    bounce = false;
+                }
+            }
+            else
+            {
+                rb.velocity = new Vector2(movedir.x, movedir.y) * movespeed;
+            }
         }
     }
     void IDamageable.damage(float damage)

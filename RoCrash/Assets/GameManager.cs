@@ -36,8 +36,9 @@ public static class GameManager
     public static float damagemult = 1f;
     public static float healthmult = 1f;
 
-    public static float timeLeft = 100000f;
+    public static float timeLeft = 120f;
     public static float timeElapsed = 0f;
+    public static int difficulty = 1;
     public static float timeIncrease = 30f;
 
     public static int enemiesKilled = 0;
