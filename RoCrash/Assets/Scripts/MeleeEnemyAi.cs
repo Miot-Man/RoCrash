@@ -12,13 +12,16 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
     public float movespeed = 3f;
     public float damage = 1f;
     public LayerMask whatDamagesPlayer;
+    public LayerMask enemybouncer;
     public GameObject[] upgrades = new GameObject[5];
     Rigidbody2D rb;
     Transform target;
     Vector2 movedir;
 
-    bool bounce;
-    float bouncetimer = 0f;
+
+    bool bounce = false;
+    float bounceCd = 0f;
+
 
     public String enemyType;
 
@@ -31,19 +34,35 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
     void Start()
     {
         target = GameManager.player.transform;
-        bounce = false;
     }
-    void OnTriggerEnter2D(Collider2D col)
+
+
+    void Bounce(Vector2 dir, float f )
+    {
+
+        bounce = true;
+        rb.AddForce((-rb.velocity) + -dir * f, ForceMode2D.Impulse);
+
+    }
+
+
+    void OnTriggerStay2D(Collider2D col)
         {
             if (((whatDamagesPlayer.value & (1 << col.gameObject.layer)) > 0) && canattack)
             {
                 canattack = false;
                 timer = 0f;
                 col.GetComponent<IDamageable>().damage(this.damage);
-                bounce = true;
-                bouncetimer = 0f;
-                rb.AddForce(-movedir * 10, ForceMode2D.Impulse);
+
+                Bounce((col.transform.position - transform.position).normalized, 20f);
+
             }
+            if (((enemybouncer.value & (1 << col.gameObject.layer)) > 0) && !bounce)
+            {
+                
+                Bounce((col.transform.position - transform.position).normalized, 5f);
+            }
+
         }
     // Update is called once per frame
     void Update()
@@ -60,21 +79,27 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
 
     }
 
+
+
+
     void FixedUpdate()
     {
+
         if (target){
             if (bounce)
             {
-                bouncetimer += Time.deltaTime;
-                if (bouncetimer >= 0.5f)
+                bounceCd += Time.fixedDeltaTime;
+                if (bounceCd >= 0.5f)
                 {
                     bounce = false;
-                }
-            }
-            else
-            {
-                rb.velocity = new Vector2(movedir.x, movedir.y) * movespeed;
-            }
+                    bounceCd = 0f;
+                }}
+                else{
+                //rb.velocity = new Vector2(movedir.x, movedir.y) * movespeed;
+                if (rb.velocity.magnitude < movespeed)
+                {
+                    rb.AddForce(movedir * movespeed, ForceMode2D.Impulse);
+                }        }
         }
     }
     void IDamageable.damage(float damage)

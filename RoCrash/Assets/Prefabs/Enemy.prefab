@@ -101,7 +101,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 7
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -178,10 +178,14 @@ MonoBehaviour:
   whatDamagesPlayer:
     serializedVersion: 2
     m_Bits: 128
+  enemybouncer:
+    serializedVersion: 2
+    m_Bits: 64
   upgrades:
   - {fileID: 7713615868193811003, guid: 376316e63dd15418baaf74c940a6e6e8, type: 3}
   - {fileID: 7713615868193811003, guid: ead52ddfcc8c311489cf9a338fe5ec76, type: 3}
   - {fileID: 5274964103474313811, guid: 17a9bb1abeabf4b47ba2c2b603613a8d, type: 3}
+  bounce: 0
   enemyType: Enemy
 --- !u!61 &2748434436224098620
 BoxCollider2D:
