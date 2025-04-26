@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using UnityEngine;
 
@@ -27,7 +26,7 @@ public class GameManagerObject : MonoBehaviour
     void Update()
     {
         
-        if ((GameManager.enemiesKilled >= (5 + 5*GameManager.bossesKilled) && !GameManager.bossSpawned) || Input.GetKeyDown(KeyCode.B))
+        if (GameManager.enemiesKilled >= (5 + 5*GameManager.bossesKilled) && !GameManager.bossSpawned)
         {
             GameManager.bossSpawned = true;
             SpawnBoss();

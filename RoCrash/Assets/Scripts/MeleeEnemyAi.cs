@@ -98,36 +98,35 @@ public class MeleeEnemyAi : MonoBehaviour, IDamageable
                     bounce = false;
                     bounceCd = 0f;
                 }}
-                else{
+            else{
                 //rb.velocity = new Vector2(movedir.x, movedir.y) * movespeed;
                 if (rb.velocity.magnitude < movespeed)
                 {
                     rb.AddForce(movedir * movespeed, ForceMode2D.Impulse);
                 }       
-                 }
-    }
+            }
+        }
     }
     void IDamageable.damage(float damage)
     {
 
 
         health -= damage;
-        UnityEngine.Debug.Log("Took Damage");
         if (health <= 0)
         {
             switch (enemyType){
                 case "Enemy":
-                 if (Random.Range(0, 100) < 90)
-                    {
-                    Instantiate(upgrades[Random.Range(0,upgrades.Length)], transform.position, Quaternion.identity);
-                    }
+                 if (Random.Range(0, 100) < 50)
+                 { 
+                     Instantiate(upgrades[Random.Range(0,upgrades.Length)], transform.position, Quaternion.identity);
+                 }
             
-                GameManager.numenemies--;
-                GameManager.enemiesKilled++;
-                GameManager.score += 1;
-                UnityEngine.Debug.Log("Enemies Killed: " + GameManager.enemiesKilled);
-                Destroy(gameObject);
-                break;
+                 GameManager.numenemies--;
+                 GameManager.enemiesKilled++;
+                 GameManager.score += 1;
+                 UnityEngine.Debug.Log("Enemies Killed: " + GameManager.enemiesKilled);
+                 Destroy(gameObject);
+                 break;
                 case "Boss":
                     GameManager.timeLeft += GameManager.timeIncrease;
                     GameManager.timeIncrease *= 0.9f;
