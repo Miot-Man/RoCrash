@@ -9,12 +9,13 @@ public class PlayerManager : MonoBehaviour, IDamageable
     private float maxhealth = 10f;
     private float basehealth;
     public healthbar healthbar;
-    
+    private GameManagerObject gmo;
     void Start()
     {
         GameManager.player = gameObject;
         healthbar.setmaxhealth(health);
         basehealth = maxhealth;
+        gmo = GameObject.Find("GameManagerObject").GetComponent<GameManagerObject>();
     }
 
     // Update is called once per frame
@@ -40,7 +41,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         Debug.Log("Player Took Damage");
         if (health <= 0)
         {
-            GameManager.endGame();
+            StartCoroutine(gmo.EndGame());
         }
     }
 }

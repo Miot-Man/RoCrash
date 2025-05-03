@@ -21,15 +21,10 @@ public static class GameManager
     public static GameObject scorebg;
     
     
-    public static void endGame()
-    {
-        scorecard.text = "Game Over\nEnemies Killed: " + score + "\nBosses Killed: " + bossesKilled;
-        scorecard.enabled = true;
-        scorebg.SetActive(true);
-        Time.timeScale = 0f;
-        Application.Quit();
-        
-    }
+    
+    
+    
+   
 
 
 
