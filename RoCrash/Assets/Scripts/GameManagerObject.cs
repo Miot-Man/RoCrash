@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class GameManagerObject : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameManagerObject : MonoBehaviour
     public TextMeshProUGUI scorecard;
 
     public GameObject scorebg;
+    public EnemySpawn spawner;
 
 
     // Start is called before the first frame update
@@ -20,6 +22,7 @@ public class GameManagerObject : MonoBehaviour
         GameManager.scorecard = scorecard;
         scorebg.SetActive(false);
         GameManager.scorebg = scorebg;
+        spawner = GameManager.spawner.GetComponent<EnemySpawn>();
     }
 
     // Update is called once per frame
@@ -54,6 +57,6 @@ public class GameManagerObject : MonoBehaviour
 
     void SpawnBoss()
     {
-        GameManager.spawner.GetComponent<EnemySpawn>().spawn(GameManager.boss);
+        spawner.spawn(GameManager.boss);
     }
 }
